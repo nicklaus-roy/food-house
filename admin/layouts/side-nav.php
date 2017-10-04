@@ -10,7 +10,7 @@
         <li>
           <a href="/admin/orders/index.php"><i class="fa fa-dashboard "></i> <span>Place Order</span></a>
         </li>
-        <?php else: ?>
+        <?php elseif ($_SESSION['auth_user']['role'] == 'admin'): ?>
         <li>
           <a href="/admin/home.php"><i class="fa fa-home"></i> <span>Dashboard</span></a>
         </li>

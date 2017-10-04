@@ -15,8 +15,11 @@
         if($user['role'] == 'admin'){
             header("Location:/admin/home.php");
         }
+        else if($user['role'] == 'cook'){
+            header("Location:/admin/inventory/index.php");
+        }
         else{
-        header("Location:/admin/orders/index.php");
+            header("Location:/admin/orders/index.php");
         }
     }
     else{
