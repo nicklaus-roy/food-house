@@ -5,6 +5,11 @@
     $user = $_SESSION['auth_user'];
 
 ?>
+<style>
+  .critical-level{
+    background-color: rgba(255,0,0,0.3)!important;
+  }
+</style>
 <link rel="stylesheet" href="/plugins/datatables/datatables.min.css">
 <div class="content-wrapper">
 
@@ -45,7 +50,7 @@
                        </thead>
                        <tbody>
                            <?php while($raw_material = $raw_materials->fetch_assoc()){ ?>
-                            <tr>
+                            <tr class = "<?php echo $raw_material['status'] == 'OK' ? '':'critical-level'?>">
                                 <td><?=$raw_material['name']?></td>
                                 <td><?=$raw_material['unit']?></td>
                                 <td><?=$raw_material['reorder_level']?></td>

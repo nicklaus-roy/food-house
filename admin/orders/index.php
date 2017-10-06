@@ -116,6 +116,10 @@
                         </div>
                         <div class="box-body">
                             <div class="form-group">
+                            <label for="customer">Customer(optional):</label>
+                                <input type="text" class="form-control" name = "customer" id = "customer" >
+                            </div>
+                            <div class="form-group">
                                 <label for="">Total Sales (₱): </label>
                                 <input type="number" class="form-control" name = "total_sales" id = "total_sales" readonly 
                                 :value = "formatCurrency(totalSales)">

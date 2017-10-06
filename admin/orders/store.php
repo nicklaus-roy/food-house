@@ -20,10 +20,11 @@
         $discount_amount = $_POST['discount_amount'];
         $discount = $_POST['discount'];
         $change = $_POST['change'];
+        $customer = $_POST['customer'];
         $sub_total = $_POST['total_sales'];
         $total_sales = $_POST['total_sales']-$discount_amount;
-        $receipt = $conn->query("INSERT INTO official_receipts (amount_given, discount_amount, customer_change, total_sales) VALUES (
-            $amount_given, $discount_amount, $change, '$total_sales')");
+        $receipt = $conn->query("INSERT INTO official_receipts (amount_given, discount_amount, customer_change, total_sales, customer) VALUES (
+            $amount_given, $discount_amount, $change, '$total_sales', '$customer')");
         $receipt_number = $conn->insert_id;
 
         $items = array();
@@ -46,7 +47,7 @@
             
         }
 
-        include($root.'/shared/print_receipt.php');
+        // include($root.'/shared/print_receipt.php');
 
         header("Location:/admin/orders/index.php");
 

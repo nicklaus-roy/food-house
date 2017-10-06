@@ -15,6 +15,13 @@
     $products_sold = $products_sold_query->fetch_assoc()['products_sold'];
   }
 
+  $critical_level = "0";
+  $critical_level_query = $conn->query("SELECT COUNT(*) as num_critical FROM raw_materials WHERE status <> 'OK'");
+  
+  if($critical_level_query){
+    $critical_level = $critical_level_query->fetch_assoc()['num_critical'];
+  }
+
   $best_seller = "None";
   $best_seller_query = $conn->query("SELECT p.name as best_seller FROM sales s INNER JOIN products p ON s.product_id = p.id 
     ORDER BY s.amount DESC LIMIT 1");
@@ -58,7 +65,7 @@
                           <span class="info-box-icon bg-green"><i class="fa fa-cubes"></i></span>
                           <div class="info-box-content">
                             <span class="info-box-text">Critical Inventory</span>
-                            <span class="info-box-number">0 items</span>
+                            <span class="info-box-number"><?=$critical_level?> items</span>
                           </div>
                         </div>
                     </div>
@@ -66,7 +73,7 @@
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="info-box">
-                          <span class="info-box-icon bg-red"><i class="fa fa-tags"></i></span>
+                          <span class="info-box-icon bg-red"><i class="fa fa-cutlery"></i></span>
                           <div class="info-box-content">
                             <span class="info-box-text">Products Sold for today</span>
                             <span class="info-box-number"><?=$products_sold?></span>

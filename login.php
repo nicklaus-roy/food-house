@@ -1,5 +1,6 @@
 <?php
     session_start();
+    date_default_timezone_set("Asia/Manila");
     include './shared/db_connect.php';
     $username = $_POST['username'];
     $user_query = $conn->query("SELECT * FROM users WHERE username = '$username'");
@@ -12,6 +13,11 @@
         }
 
         $_SESSION['auth_user'] = $user;
+        $cur_date = date("Y-m-d");
+        $cur_time = date("h:i:s");
+        $id = $user['id'];
+        $conn->query("INSERT INTO history_logs (user_id, activity, log_date, log_time) VALUES ('$id', 'logged in', '$cur_date', '$cur_time')");
+
         if($user['role'] == 'admin'){
             header("Location:/admin/home.php");
         }

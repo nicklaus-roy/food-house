@@ -46,7 +46,7 @@
           <li class="dropdown tasks-menu">
             <!-- Menu Toggle Button -->
             <a href="/admin/products/index.php">
-              <i class="fa fa-tags fa-lg"></i>
+              <i class="fa fa-cutlery fa-lg"></i>
               <!-- <span class="label label-warning">10</span> -->
             </a>
           </li>
