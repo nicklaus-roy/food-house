@@ -99,6 +99,9 @@
              
               <!-- Menu Footer-->
               <li class="user-footer">
+                <div class="pull-left">
+                  <a href="/admin/users/index.php" class="btn btn-default btn-flat">View Users</a>
+                </div>
                 <div class="pull-right">
                   <a href="/logout.php" class="btn btn-default btn-flat">Sign out</a>
                 </div>

@@ -1,7 +1,5 @@
 <?php
 include('../layouts/master.php');
-
-
 ?>
 <link rel="stylesheet" href="/plugins/datatables/datatables.min.css">
 <div class="content-wrapper">

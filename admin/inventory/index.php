@@ -34,7 +34,7 @@
                            <tr>
                                <th>Inventory</th>
                                <th>Unit</th>
-                               <th>Ideal Quantity</th>
+                               <th>Reorder Quantity</th>
                                <th>Beg Quantity</th>
                                <th>End Quantity</th>
                                <th>Status</th>
