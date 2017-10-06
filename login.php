@@ -14,7 +14,7 @@
 
         $_SESSION['auth_user'] = $user;
         $cur_date = date("Y-m-d");
-        $cur_time = date("h:i:s");
+        $cur_time = date("H:i:s");
         $id = $user['id'];
         $conn->query("INSERT INTO history_logs (user_id, activity, log_date, log_time) VALUES ('$id', 'logged in', '$cur_date', '$cur_time')");
 
