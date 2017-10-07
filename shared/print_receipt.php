@@ -15,7 +15,10 @@ $printer -> setJustification(Printer::JUSTIFY_CENTER);
 $printer -> selectPrintMode(Printer::MODE_DOUBLE_WIDTH);
 $printer -> text("Foodjectives\nFood House\n");
 $printer -> selectPrintMode();
-$printer -> text("Purok 11 Bakakeng, Baguio City\n");
+$printer -> text("Purok 11 Quinio Compound\n");
+$printer ->text("Bakakeng Norte Sur, Baguip City\n");
+$printer ->text("Vanduane V. Badua - Prop.\n");
+$printer ->text("NonVat Reg TIN:479-132-178-000.\n");
 $printer -> feed(2);
 
 

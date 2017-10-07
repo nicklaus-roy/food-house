@@ -47,7 +47,7 @@
             
         }
 
-        // include($root.'/shared/print_receipt.php');
+        include($root.'/shared/print_receipt.php');
 
         header("Location:/admin/orders/index.php");
 
