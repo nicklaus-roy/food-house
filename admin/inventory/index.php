@@ -1,6 +1,7 @@
 <?php
     include('../layouts/master.php');
 
+    $cur_date = date("Y-m-d");
     $raw_materials = $conn->query("SELECT * FROM raw_materials");
     $user = $_SESSION['auth_user'];
 
@@ -42,10 +43,8 @@
                                <th>Reorder Quantity</th>
                                <th>Beg Quantity</th>
                                <th>End Quantity</th>
+                               <th>Delivered Quantity</th>
                                <th>Status</th>
-                               <?php if($user['role'] == 'admin'):?>
-                                <th>Edit Details</th>
-                                <?php endif?>
                            </tr>
                        </thead>
                        <tbody>
@@ -59,10 +58,10 @@
                                     <input type="hidden" name = "raw_material_id[]" value = "<?=$raw_material['id']?>">
                                     <input type="number" name = "qty_end[]" value = "<?=$raw_material['qty_end']?>">
                                 </td>
+                                <td>
+                                  <?=$raw_material['delivered_qty']?>
+                                </td>
                                 <td><?=$raw_material['status']?></td>
-                                <?php if($user['role'] == 'admin'): ?>
-                                  <td><a href="/admin/inventory/edit.php?id=<?=$raw_material['id']?>"><i class="fa fa-edit"></i></a></td>
-                                <?php endif; ?>
                             </tr>
                            <?php } ?>
                        </tbody>

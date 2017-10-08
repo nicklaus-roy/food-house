@@ -35,6 +35,10 @@
         <li>
         <a href="/admin/receipts/index.php"><i class="fa fa-tags"></i> <span>Receipts</span></a>
         </li>
+        <li>
+          <a href="/admin/delivery/index.php"><i class="fa fa-truck"></i> <span>Delivery Order</span></a>
+        </li>
+
 
 
         <?php endif;?>
