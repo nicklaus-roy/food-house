@@ -5,21 +5,12 @@
     include($root.'/shared/db_connect.php');
 
 
-    $qty_ends = $_POST['qty_end'];    
+    $qtys_on_hand = $_POST['qty_on_hand'];    
     $raw_material_id = $_POST['raw_material_id'];   
 
-    foreach($qty_ends as $key => $qty_end){
+    foreach($qtys_on_hand as $key => $qty_on_hand){
         if(isset($_POST['approve-changes'])){
-            $reorder_lvl = $conn->query("SELECT reorder_level FROM raw_materials WHERE id = '$raw_material_id[$key]'")->fetch_assoc();
-            if($reorder_lvl['reorder_level'] >= $qty_end){
-                $conn->query("UPDATE raw_materials SET qty = '$qty_end', qty_end = '0', status = 'NOT OK' WHERE id = '$raw_material_id[$key]'");
-            }
-            else{
-                $conn->query("UPDATE raw_materials SET qty = '$qty_end', qty_end = '0', status = 'OK' WHERE id = '$raw_material_id[$key]'");
-            }
-        }
-        else{
-            $conn->query("UPDATE raw_materials SET qty_end = '$qty_end' WHERE id = '$raw_material_id[$key]'");
+            $conn->query("UPDATE raw_materials SET qty = '$qty_on_hand', delivered_qty = 0, issued_qty = 0 WHERE id = '$raw_material_id[$key]'");            
         }
     } 
     header("Location:/admin/inventory/index.php");

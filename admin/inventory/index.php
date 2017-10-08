@@ -4,8 +4,8 @@
     $cur_date = date("Y-m-d");
     $raw_materials = $conn->query("SELECT * FROM raw_materials");
     $user = $_SESSION['auth_user'];
-
 ?>
+
 <style>
   .critical-level{
     background-color: rgba(255,0,0,0.3)!important;
@@ -16,7 +16,7 @@
 
     <section class="content-header">
         <h1>
-        Inventory
+        Inventory (<?=date('M d, Y')?>)
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Inventory</a></li>
@@ -41,9 +41,11 @@
                                <th>Inventory</th>
                                <th>Unit</th>
                                <th>Reorder Quantity</th>
+                               <th>Reorder Point</th>
                                <th>Beg Quantity</th>
-                               <th>End Quantity</th>
                                <th>Delivered Quantity</th>
+                               <th>Issued Stocks Qty</th>
+                               <th>Quantity on Hand</th>
                                <th>Status</th>
                            </tr>
                        </thead>
@@ -52,15 +54,21 @@
                             <tr class = "<?php echo $raw_material['status'] == 'OK' ? '':'critical-level'?>">
                                 <td><?=$raw_material['name']?></td>
                                 <td><?=$raw_material['unit']?></td>
-                                <td><?=$raw_material['reorder_level']?></td>
+                                <td><?=$raw_material['reorder_qty']?></td>
+                                <td><?=$raw_material['reorder_point']?></td>
                                 <td><?=$raw_material['qty']?></td>
-                                <td>
-                                    <input type="hidden" name = "raw_material_id[]" value = "<?=$raw_material['id']?>">
-                                    <input type="number" name = "qty_end[]" value = "<?=$raw_material['qty_end']?>">
-                                </td>
                                 <td>
                                   <?=$raw_material['delivered_qty']?>
                                 </td>
+                                <td><?=$raw_material['issued_qty']?></td>
+
+                                <td>
+                                    <input type="hidden" name = "raw_material_id[]" value = "<?=$raw_material['id']?>">
+                                    <input type="hidden" name = "qty_on_hand[]" 
+                                      value = "<?=$raw_material['qty']-$raw_material['issued_qty']?>">
+                                    <?=$raw_material['qty']-$raw_material['issued_qty']?>
+                                </td>
+                                
                                 <td><?=$raw_material['status']?></td>
                             </tr>
                            <?php } ?>
@@ -97,7 +105,9 @@
 <script src = "/plugins/datatables/datatables.min.js"></script>
 <script>
     $(function(){
-        $('#raw-material-table').DataTable();
+        $('#raw-material-table').DataTable({
+          "scrollX": true
+        });
     });
 </script>
 </body>

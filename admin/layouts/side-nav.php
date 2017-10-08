@@ -27,9 +27,6 @@
         <a href="/admin/products/create.php"><i class="fa fa-cutlery"></i> <span>Add Product</span></a>
         </li>
         <li>
-          <a href="/admin/inventory/create.php"><i class="fa fa-cube"></i> <span>Add Inventory</span></a>
-        </li>
-        <li>
           <a href="/admin/users/history.php"><i class="fa fa-history"></i> <span>View History Logs</span></a>
         </li>
         <li>
@@ -37,6 +34,9 @@
         </li>
         <li>
           <a href="/admin/delivery/index.php"><i class="fa fa-truck"></i> <span>Delivery Order</span></a>
+        </li>
+        <li>
+          <a href="/admin/stock-issuance/index.php"><i class="fa fa-external-link"></i><span>Stock Issuance</span></a>
         </li>
 
 
