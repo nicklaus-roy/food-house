@@ -77,8 +77,8 @@
                    <br>
                    <div style="text-align: right">
                     <?php if($user['role'] == 'admin'):?>
-                      <input type="hidden" name = "approve-changes" value = "approved">
-                      <button class="btn btn-primary" type = "submit">Commit Changes</button>
+                      <input  class="btn btn-primary" type = "submit" name = "commit-changes" value = "Commit Changes">
+                      <input class="btn btn-primary" type = "submit" name = "rollback-changes" value = "Rollback Changes">
                     <?php else:?>
                       <button class="btn btn-primary" type = "submit">Save Changes</button>  
                     <?php endif;?>
@@ -106,7 +106,8 @@
 <script>
     $(function(){
         $('#raw-material-table').DataTable({
-          "scrollX": true
+          "scrollX": true,
+          "bPaginate": false
         });
     });
 </script>
