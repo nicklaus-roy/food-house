@@ -11,6 +11,14 @@
 
 <script src = '/plugins/vue js/vue.js'></script>
 
+<script>
+    $(function(){
+        setTimeout(function(){
+            $('#custom-message-box').hide();
+        },2000);
+    });
+</script>
+
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. -->

@@ -43,10 +43,9 @@
                                <th>Reorder Quantity</th>
                                <th>Reorder Point</th>
                                <th>Beg Quantity</th>
-                               <th>Delivered Quantity</th>
-                               <th>Issued Stocks Qty</th>
                                <th>Quantity on Hand</th>
                                <th>Status</th>
+                               <th>Actions</th>
                            </tr>
                        </thead>
                        <tbody>
@@ -58,32 +57,18 @@
                                 <td><?=$raw_material['reorder_point']?></td>
                                 <td><?=$raw_material['qty']?></td>
                                 <td>
-                                  <?=$raw_material['delivered_qty']?>
-                                </td>
-                                <td><?=$raw_material['issued_qty']?></td>
-
-                                <td>
                                     <input type="hidden" name = "raw_material_id[]" value = "<?=$raw_material['id']?>">
                                     <input type="hidden" name = "qty_on_hand[]" 
-                                      value = "<?=$raw_material['qty']-$raw_material['issued_qty']?>">
-                                    <?=$raw_material['qty']-$raw_material['issued_qty']?>
+                                      value = "<?=$raw_material['qty_on_hand']?>">
+                                    <?=$raw_material['qty_on_hand']?>
                                 </td>
-                                
                                 <td><?=$raw_material['status']?></td>
+                                <td><a href="./edit.php?id=<?=$raw_material['id']?>">Update</a></td>
                             </tr>
                            <?php } ?>
                        </tbody>
                    </table>
                    <br>
-                   <div style="text-align: right">
-                    <?php if($user['role'] == 'admin'):?>
-                      <input  class="btn btn-primary" type = "submit" name = "commit-changes" value = "Commit Changes">
-                      <input class="btn btn-primary" type = "submit" name = "rollback-changes" value = "Rollback Changes">
-                    <?php else:?>
-                      <button class="btn btn-primary" type = "submit">Save Changes</button>  
-                    <?php endif;?>
-                                        
-                   </div>
                </form>
            </div>
        </div>
@@ -106,8 +91,6 @@
 <script>
     $(function(){
         $('#raw-material-table').DataTable({
-          "scrollX": true,
-          "bPaginate": false
         });
     });
 </script>

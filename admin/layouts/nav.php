@@ -69,6 +69,25 @@
                       <i class="fa fa-bar-chart-o fa-lg"></i>  Best Selling Products
                     </a>
                   </li>
+                  <li>
+                    <a href="/admin/reports/frequently-used-raw-materials.php">
+                      <i class="fa fa-bar-chart-o fa-lg"></i>  Frequently Used Raw Material
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="/admin/reports/delivery-report.php">
+                      <i class="fa fa-bar-chart-o fa-truck"></i>  Delivery Report
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/admin/reports/stock-issuance-report.php">
+                      <i class="fa fa-bar-chart-o fa-external-link"></i>  Stock Issuance Report
+                    </a>
+                  </li>
+
+
+
 
                 </ul>
               </li>

@@ -12,11 +12,13 @@
     $query = $conn->query("INSERT INTO stock_issuances (raw_material_id, quantity, date_issued) 
         VALUES ('$raw_material_id', '$quantity', '$date_received')");
 
-    $conn->query("UPDATE raw_materials SET qty = qty-'".$quantity."', issued_qty = issued_qty+'$quantity' 
+    $conn->query("UPDATE raw_materials SET qty_on_hand = qty_on_hand-".$quantity." 
         WHERE id = '$raw_material_id'");
 
-    include($root.'/shared/calculate-reorder-point.php');
     include($root.'/shared/update-raw-material-status.php');
+
+    $_SESSION['message'] = "Stock issued.";
+
     header("Location:/admin/inventory/index.php");
 
 

@@ -7,12 +7,14 @@
 
     if(isset($_POST['save_changes'])){
         $id = $_POST['id'];
-        $name = $_POST['name'];
         $qty = $_POST['qty'];
-        $unit = $_POST['unit'];
-        $status = $_POST['status'];
+        $qty_on_hand = $_POST['qty_on_hand'];
 
-        $query = $conn->query("UPDATE raw_materials SET name = '$name', qty = '$qty', unit = '$unit', status = '$status' WHERE id = '$id'");
+        $query = $conn->query("UPDATE raw_materials SET qty_on_hand = '$qty_on_hand', qty = '$qty'
+            WHERE id = '$id'");
+
+        include($root.'/shared/update-raw-material-status.php');
+
         header("Location:/admin/inventory/index.php");
 
     }

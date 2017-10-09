@@ -31,11 +31,26 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
   <link rel="stylesheet" href="/plugins/bootstrap-select-1.12.4/dist/css/bootstrap-select.min.css">
-        
+  
 </head>
 
-
+<style>
+  .message{
+    position: absolute;
+    right:250px;
+    top:65px;
+    z-index:9999;
+  }
+</style>
 <body class="hold-transition skin-red sidebar-mini">
+  <?php if(isset($_SESSION['message'])){?>
+    <div class="alert alert-success message" id = "custom-message-box">
+      <?=$_SESSION['message']?>
+    </div>
+
+    <?php unset($_SESSION['message']);
+      }
+    ?>
   <div class="wrapper">
 
     <!-- Main Header -->

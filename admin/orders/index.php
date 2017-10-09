@@ -43,9 +43,16 @@
                                             <option value="#" disabled selected>Choose a product. </option>
                                             <?php
                                                 while($product = $products->fetch_assoc()){
-                                                    echo "<option value = '".$product['id']."' data-price = '".$product['price'].
-                                                    "' data-unit = '".$product['unit']."'>".$product['name']."</option>";
-                                                }
+                                                    if($product['available'] == 1):?>
+                                                    <option value = "<?=$product['id']?>" data-price = "<?=$product['price']?>"
+                                                        data-unit = "<?=$product['unit']?>"><?=$product['name']?></option>
+                                                    <?php else:?>
+                                                    <option disabled value = "<?=$product['id']?>" data-price = "<?=$product['price']?>"
+                                                        data-unit = "<?=$product['unit']?>"><?=$product['name']?>(Not Available)</option>
+
+                                                <?php endif;?>
+                                            <?php 
+                                               }
                                             ?>
                                         </select>
                                     </div>

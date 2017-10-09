@@ -2,8 +2,10 @@
     include('../layouts/master.php');
 
     $raw_materials = $conn->query("SELECT * FROM raw_materials ORDER BY name");
+    $cur_date = date("Y-m-d");
     $deliveries = $conn->query("SELECT d.*, r.name material_name, s.name supplier_name FROM deliveries d 
-        INNER JOIN raw_materials r ON d.raw_material_id = r.id INNER JOIN suppliers s ON s.id = r.supplier_id");
+        INNER JOIN raw_materials r ON d.raw_material_id = r.id INNER JOIN suppliers s ON s.id = r.supplier_id
+        WHERE d.date_received = '$cur_date'");
     $user = $_SESSION['auth_user'];
 
 ?>
@@ -14,7 +16,6 @@
 </style>
 <link rel="stylesheet" href="/plugins/datatables/datatables.min.css">
 <div class="content-wrapper">
-
     <section class="content-header">
         <h1>
         Deliveries
@@ -40,8 +41,7 @@
                                 <select class="selectpicker" name = "raw_material_id" id = "raw_material_id" 
                                     data-live-search = "true">
                                 <?php while($raw_material = $raw_materials->fetch_assoc()){?>
-                                    <option value="<?=$raw_material['id']?>">
-                                        <?=$raw_material['name']?>
+                                    <option value="<?=$raw_material['id']?>"><?=$raw_material['name']?>
                                     </option>
                                 <?php } ?>
                                 </select>
@@ -51,16 +51,16 @@
                                 <input type="number" min = "1" class="form-control" name = "quantity" id = "quantity" value = "1">
                             </div>
                             <div class="form-group">
-                                <button class="btn btn-primary">Add</button>
+                                <button class="btn btn-primary" id = "custom-alert">Add</button>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-8">
+            <!-- <div class="col-sm-8">
                 <div class="box box-primary">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Delivery History</h3>
+                        <h3 class="box-title">Delivered Materials for Today</h3>
                     </div>
                     <div class="box-body">
                         <table class="table table-bordered" id="deliveries-table">
@@ -85,7 +85,7 @@
                         </table>
                     </div>
                 </div>
-            </div>
+            </div> -->
        </div>
         
     </section>
@@ -109,5 +109,17 @@
         $('.selectpicker').selectpicker();
     });
 </script>
+
+<script type="text/javascript">
+    $(function(){
+        $('#custom-alert').click(function(event){
+            var raw_material_id = $('#raw_material_id ').val();
+            if(!confirm("Are you sure you want to add "+$('#quantity').val()+" delivery on "+$("option[value="+raw_material_id+"]").text())){
+                event.preventDefault();
+            }
+        });
+    });
+</script>
+
 </body>
 </html>

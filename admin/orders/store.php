@@ -49,6 +49,8 @@
 
         include($root.'/shared/print_receipt.php');
 
+        $_SESSION['message'] = "Order Processed";
+
         header("Location:/admin/orders/index.php");
 
 

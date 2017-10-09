@@ -67,9 +67,20 @@
 ?>
 
 <script src = "/plugins/datatables/datatables.min.js"></script>
+<script src = "/dist/buttons/js/buttons.print.min.js"></script>
 <script>
     $(function(){
-        $('#receipts-table').DataTable();
+        $('#receipts-table').DataTable({
+          "ordering": false,
+          dom: 'Blfrtip',
+          buttons: [
+              {
+                  extend: 'print',
+                  text: 'Print Report',
+                  title: 'Receipts Report'
+              }
+          ]
+        });
         $('table').on('click', 'i.remove-receipt', function(event){
         	console.log("yes");
         	if(confirm("Are you sure?")){
@@ -84,3 +95,6 @@
 </script>
 </body>
 </html>
+
+
+

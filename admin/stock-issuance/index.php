@@ -2,8 +2,9 @@
     include('../layouts/master.php');
 
     $raw_materials = $conn->query("SELECT * FROM raw_materials ORDER BY name");
+    $cur_date = date("Y-m-d");
     $stock_issuances = $conn->query("SELECT si.*, r.name material_name FROM stock_issuances si 
-        INNER JOIN raw_materials r ON si.raw_material_id = r.id");
+        INNER JOIN raw_materials r ON si.raw_material_id = r.id WHERE si.date_issued = '$cur_date'");
     $user = $_SESSION['auth_user'];
 
 ?>
@@ -35,8 +36,7 @@
                                 <select class="selectpicker" name = "raw_material_id" id = "raw_material_id" 
                                     data-live-search = "true">
                                 <?php while($raw_material = $raw_materials->fetch_assoc()){?>
-                                    <option value="<?=$raw_material['id']?>">
-                                        <?=$raw_material['name']?>
+                                    <option value="<?=$raw_material['id']?>"><?=$raw_material['name']?>
                                     </option>
                                 <?php } ?>
                                 </select>
@@ -46,13 +46,13 @@
                                 <input type="number" min = "1" class="form-control" name = "quantity" id = "quantity" value = "1">
                             </div>
                             <div class="form-group">
-                                <button class="btn btn-primary">Issue Stock</button>
+                                <button class="btn btn-primary" id = "custom-alert">Issue Stock</button>
                             </div>
                         </form>
                     </div>
                 </div>
-            </div>
-            <div class="col-sm-8">
+             </div>
+            <!-- <div class="col-sm-8">
                 <div class="box box-primary">
                     <div class="box-header with-border">
                         <h3 class="box-title">Stock Issuance History</h3>
@@ -78,7 +78,7 @@
                         </table>
                     </div>
                 </div>
-            </div>
+            </div> -->
        </div>
         
     </section>
@@ -102,5 +102,16 @@
         $('.selectpicker').selectpicker();
     });
 </script>
+<script type="text/javascript">
+    $(function(){
+        $('#custom-alert').click(function(event){
+            var raw_material_id = $('#raw_material_id ').val();
+            if(!confirm("Are you sure you want to issue "+$('#quantity').val()+" "+$("option[value="+raw_material_id+"]").text())){
+                event.preventDefault();
+            }
+        });
+    });
+</script>
+
 </body>
 </html>
